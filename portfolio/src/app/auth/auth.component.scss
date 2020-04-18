@@ -1,0 +1,45 @@
+.flex-end {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+.full-width {
+    width: 100%;
+}
+
+.card {
+    width: 500px;
+    img{
+        height: 205px;
+        overflow: hidden;
+    }
+}
+.card-connexion {
+    max-width: 400px;
+}
+
+.card-creation{
+    max-width: 500px;
+    min-height: 150px;
+    img {
+        height: 165px;
+    }
+}
+.full-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+}
+.bg-warning {
+    background-color: #ffb300;
+}
+.card-center {
+    margin: 0 auto;
+}
+.mat-option{
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+}

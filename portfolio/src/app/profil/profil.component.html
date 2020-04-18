@@ -1,0 +1,46 @@
+<mat-card class="card">
+  <div class="card-title-start">
+    <h1>Mon profil</h1>
+  </div>
+
+  <mat-card-content class="content">
+    <form [formGroup]="form">
+        
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Avatar</mat-label>
+        <mat-select formControlName="avatar" name="avatar">
+          <mat-option *ngFor='let img of avatars' [value]="img.img">
+            <img src="{{img.img}}" height="26" width="26" style="margin-right: 10px;"> {{img.label}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input matInput formControlName="adresse" (ngModelChange)="search()" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor='let option of options' [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="form.controls['email'].errors?.email">L'email saisi est mal formé.</mat-error>
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+</mat-card>

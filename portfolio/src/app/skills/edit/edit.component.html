@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Modification de {{data.name}}</h1>
+<div mat-dialog-content>
+    <p>Vous pouvez modifier ces champs :</p>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput [(ngModel)]="data.name">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput [(ngModel)]="data.level">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+  
+</div>
+<div mat-dialog-actions class="flex-end">
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button (click)="onOkClick(data)" color='primary'>Ok</button>
+</div>

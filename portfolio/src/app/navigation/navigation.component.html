@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav mat-elevation-z3" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+      <mat-toolbar class="sidenav-title">
+        <img src='../assets/bag.png'/>
+        {{title}}
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+      <mat-nav-list class="nav-sidenav">
+        <button mat-button *ngFor="let route of routes" routerLink="{{route.path}}" routerLinkActive="active"><mat-icon>{{route.icon}}</mat-icon>{{route.label}}</button>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="container">
+      <mat-toolbar class="toolbar">
+        <button
+            type="button"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <span>Portfolio</span> -->
+        <span class="spacer"></span>
+        <h3 *ngIf='logged'>{{userLogged.username}}</h3>
+        <button mat-icon-button *ngIf='logged' [matMenuTriggerFor]="menu" class="more_button"><img src="{{ userLogged.avatar }}" height="40" width="40"/></button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="account">Mon Profil</button>
+            <button mat-menu-item class="deconnect" (click)="logout()">Déconnexion <mat-icon>power_settings_new</mat-icon></button>
+        </mat-menu>
+      </mat-toolbar>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+      </mat-sidenav-content>
+  </mat-sidenav-container>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Créer une nouvelle Compétence</h1>
+<div mat-dialog-content>
+    <p>Pour créer une compétence, renseignez ces champs :</p>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Nom de la compétence</mat-label>
+                <input matInput [(ngModel)]="newSkill.name">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Niveau de la compétence (sur 10) :</mat-label>
+                <input matInput [(ngModel)]="newSkill.level">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<div mat-dialog-actions class="flex-end">
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button (click)="onOkClick(newSkill)" color='primary'>Ok</button>
+</div>

@@ -1,0 +1,103 @@
+<span *ngIf="!isLogged">
+  <mat-tab-group mat-align-tabs="center" animationDuration="2000ms">
+    <mat-tab label="Se connecter">
+      <div class="full-center">
+        <mat-card class=" card card-connexion">
+          <!-- <img mat-card-image src="https://cdn.pixabay.com/photo/2015/06/23/06/09/coast-818349_960_720.jpg" alt=''> -->
+          <mat-card-content>
+            <h3>Veuillez vous connecter pour accéder à votre espace.</h3>
+
+            <form [formGroup]="loginForm">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error>L'email est obligatoire</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>Le mot de passe est obligatoire.</mat-error>
+              </mat-form-field>
+              <button mat-raised-button (click)="login()" color="primary" class="full-width">Se connecter</button>
+              
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Créer un compte">
+      <div class="full-center">
+        <mat-card class=" card card-creation">
+
+          <mat-card-content>
+          
+            <h1 mat-card-title class="d-center"> Création d'un compte</h1>
+            <h3>Créer un utilisateur pour accéder à votre espace.</h3>
+
+            <form [formGroup]="registerForm">
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Prénom</mat-label>
+                <input matInput formControlName="firstName">
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="lastName">
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Avatar</mat-label>
+                <mat-select formControlName="avatar" name="avatar">
+                  <mat-option *ngFor='let img of avatars' [value]="img.img">
+                    <img src="{{img.img}}" height="26" width="26" style="margin-right: 10px;"> {{img.label}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Adresse</mat-label>
+                <input matInput formControlName="address" (ngModelChange)="search()" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor='let option of options' [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="registerForm.controls['email'].errors?.email">L'email saisi est mal formé.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.controls['password'].errors?.required">Le mot de passe est obligatoire.</mat-error>
+                <button mat-flat-button (click)="generatePassword()">{{ genPass }}</button>
+              </mat-form-field>
+
+                <button mat-raised-button (click)="reset()" color="primary" type="reset">Annuler</button>
+                <button mat-raised-button (click)="register()" color="primary"  [disabled]="!registerForm.valid" type="submit">Créer un compte</button>
+            </form>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+</span>
