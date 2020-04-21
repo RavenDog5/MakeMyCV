@@ -25,6 +25,9 @@ export class NavigationComponent implements OnInit, DoCheck {
     );
 
     ngOnInit(): void {
+      if (localStorage.getItem('idToken') != null) {
+        localStorage.removeItem('idToken');
+      }
       this.refreshRoutes();
     }
     // Refresh le composant !
@@ -46,8 +49,8 @@ export class NavigationComponent implements OnInit, DoCheck {
       }
     }
 
-    logout(): void {
-      this.authService.logout();
+    async logout() {
+      await this.authService.logout();
       this.router.navigate(['auth']);
     }
 

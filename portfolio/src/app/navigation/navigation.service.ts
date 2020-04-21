@@ -12,7 +12,8 @@ export class NavigationService {
 
 
   public getUserConnected() {
-    console.log('User connected : ', this.authService.userConnected);
+    // console.log('NAVIGATION SERVICE');
+    // console.log('User connected : ', this.authService.userConnected);
     return this.authService.userConnected;
   }
 

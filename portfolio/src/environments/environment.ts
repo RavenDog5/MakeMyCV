@@ -19,10 +19,10 @@ export const environment = {
     entrypoint : 'http://localhost:3009',
     endpoints : {
       skills : 'competences',
-      account : 'profile',
+      account : 'user',
       experiences : 'experiences',
-      login: 'auth/login',
-      register: 'auth/register',
+      login: 'user/login',
+      register: 'user',
       adress: 'utils/address',
       password: 'utils/password'
     }

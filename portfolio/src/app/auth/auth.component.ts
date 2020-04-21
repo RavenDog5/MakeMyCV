@@ -3,7 +3,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { User } from './user.model';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 
 export interface FeatureCollection {
@@ -35,9 +35,8 @@ export class AuthComponent implements OnInit {
   });
 
   registerForm: FormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    avatar: new FormControl(''),
+    username: new FormControl(''),
+    avatar: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.required),
@@ -66,7 +65,6 @@ export class AuthComponent implements OnInit {
       }
     }
 
-
   generatePassword(): void {
     if (this.registerForm.value.password !== '') {
       this.registerForm.patchValue({
@@ -74,12 +72,11 @@ export class AuthComponent implements OnInit {
       });
     }
     this.authService.getPasswordGenerated().subscribe( (res) => {
-
       this.registerForm.patchValue({
         password:  res[0].password
       });
       const msg = 'Notez bien le mot de passe généré : ' + res[0].password + '\n Le mot de passe est directement renseigné 😉';
-      this.snackbar.open(msg, 'C\'est noté !', {});
+      this.snackbar.open(msg, 'C\'est noté !', {panelClass: ['snackbar-success']});
       this.genPass = 'Un autre mot de passe ?';
     }, err => console.error(err));
   }
@@ -87,34 +84,48 @@ export class AuthComponent implements OnInit {
   login(): void {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
     .subscribe(res => {
+      console.log('resultat : ', res);
       this.authService.setSession(res);
       this.router.navigate(['dashboard']);
-    }, err => console.error(err));
+    }, err => {
+      console.log('ERREUR ', err);
+      if (err.status === 401) {
+        const message = ' ❌🙅‍♀️ Utilisateur inconnu';
+        this.snackbar.open(message, '', {panelClass: ['snackbar-error'], duration: 2500});
+      }
+    });
   }
 
   register(): void {
     this.newUser = {
-      name: this.registerForm.value.firstName + ' ' + this.registerForm.value.lastName,
+      username: this.registerForm.value.username,
       avatar: this.registerForm.value.avatar,
       email: this.registerForm.value.email,
-      adresse: this.registerForm.value.address,
-      password: this.registerForm.value.password,
-      experiences: [],
-      competences: []
+      address: this.registerForm.value.address,
+      password: this.registerForm.value.password
     };
-    console.log('REGISTER : ');
-    console.log(this.newUser);
+    // console.log('REGISTER : ');
+    // console.log(this.newUser);
+    this.registerForm.clearValidators();
     this.registerForm.reset();
-    // console.log(newUser);
-    // this.authService.register(newUser)
-    // .subscribe( () => {
-    //   this.snackbar.open('Utilisateur créé avec succès ! Vous pouvez vous connecter maintenant 😉', 'Ok !');
-    // }, err => console.error(err));
+    // console.log(this.newUser);
+    this.authService.register(this.newUser)
+    .subscribe( () => {
+      const message = 'Utilisateur créé avec succès ! Vous pouvez vous connecter maintenant 😉';
+      this.snackbar.open( message, 'Ok !', {panelClass: ['snackbar-success'], duration: 3000});
+    }, err => {
+      if (err.status === 400) {
+        const message = 'L\'email ou le pseudo est déjà existant, veuillez réessayer. ❌';
+        this.snackbar.open( message, 'Ok !', {panelClass: ['snackbar-error'], duration: 3000});
+      }
+    });
   }
 
   reset() {
     this.registerForm.reset();
+    this.registerForm.clearValidators();
     this.loginForm.reset();
+    this.loginForm.clearValidators();
     this.genPass = 'Pas d\'idée de mot de passe ?';
   }
 

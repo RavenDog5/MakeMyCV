@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
-import * as moment from 'moment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,23 +34,26 @@ export class AuthService {
       email: mail,
       password: pass
     };
+    console.log('user to log : ', user);
     return this.http.post(this.API_URL + '/' + this.endPointLogin, user);
   }
 
   setSession(authResult): void {
-    const expiresAt = moment().add(authResult.expires_in, 'second');
-    localStorage.setItem('id_token', authResult.access_token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()) );
-    // Affectation des infos utilisateur
-    const stock = authResult.user_id.split('_');
+
+    // Hash email
+    // const hash = bcrypt.hashSync(authResult.user.email, 10);
+
+    localStorage.setItem('idToken', authResult.user.token);
+    
+    console.log('RESULT : ', authResult);
     this.userConnected = {
-      id: stock[1],
-      username: authResult.username,
-      avatar: authResult.avatar,
-      email: authResult.email
+      username: authResult.user.username,
+      avatar: authResult.user.avatar,
+      email: authResult.user.email,
+      token: authResult.user.token
     };
     console.log('AUTHSERVICE');
-    console.log('User Connected Infos :' + this.userConnected);
+    console.log('User Connected Infos :', this.userConnected);
   }
 
   register(newUser: User): Observable<any> {
@@ -58,21 +61,20 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
+    localStorage.removeItem('idToken');
+    this.userConnected = null;
   }
 
   public isLoggedIn(): boolean {
-    return moment().isBefore(this.getExpiration());
+    if (this.userConnected != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isLoggedOut(): boolean {
       return !this.isLoggedIn();
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
 }

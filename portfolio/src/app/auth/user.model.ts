@@ -1,10 +1,8 @@
 export class User {
     id?: string;
-    name: string;
+    username: string;
     avatar: string;
-    adresse: string;
+    address: string;
     email: string;
     password: string;
-    experiences: [];
-    competences: [];
 }

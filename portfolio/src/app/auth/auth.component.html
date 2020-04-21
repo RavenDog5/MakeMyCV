@@ -23,7 +23,7 @@
                 </button>
                 <mat-error>Le mot de passe est obligatoire.</mat-error>
               </mat-form-field>
-              <button mat-raised-button (click)="login()" color="primary" class="full-width">Se connecter</button>
+              <button mat-raised-button (click)="login()" color="primary" [disabled]="!loginForm.valid" class="full-width">Se connecter</button>
               
             </form>
           </mat-card-content>
@@ -46,15 +46,10 @@
             <form [formGroup]="registerForm">
 
               <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Prénom</mat-label>
-                <input matInput formControlName="firstName">
+                <mat-label>Pseudo</mat-label>
+                <input matInput formControlName="username">
               </mat-form-field>
-  
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nom</mat-label>
-                <input matInput formControlName="lastName">
-              </mat-form-field>
-  
+
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Avatar</mat-label>
                 <mat-select formControlName="avatar" name="avatar">
@@ -90,8 +85,11 @@
                 <button mat-flat-button (click)="generatePassword()">{{ genPass }}</button>
               </mat-form-field>
 
+              <div class="flex-end ">
                 <button mat-raised-button (click)="reset()" color="primary" type="reset">Annuler</button>
-                <button mat-raised-button (click)="register()" color="primary"  [disabled]="!registerForm.valid" type="submit">Créer un compte</button>
+                <button mat-raised-button (click)="register()" color="primary"  [disabled]="!registerForm.valid" type="submit" class='btn-register'>Créer un compte</button>
+              </div>
+
             </form>
 
           </mat-card-content>

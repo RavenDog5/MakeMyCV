@@ -36,7 +36,7 @@ export class UserService {
 
     async create(dto: CreateUserDto): Promise<UserRO> {
         // Checker l'unicité de l'utilisateur
-        const {username, email, password} = dto;
+        const {username, email, password, address, avatar} = dto;
 
         const qb = getRepository(UserEntity)
             .createQueryBuilder('user')
@@ -54,6 +54,8 @@ export class UserService {
         // Création d'un nouvel utilisation si l'unicité est bien respectée
         const newUser = new UserEntity();
         newUser.username = username;
+        newUser.address = address;
+        newUser.avatar = avatar;
         newUser.password = password;
         newUser.email = email;
 

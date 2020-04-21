@@ -7,6 +7,10 @@
     width: 100%;
 }
 
+.btn-register{
+    margin-left: 10px;
+}
+
 .card {
     width: 500px;
     img{
@@ -42,4 +46,22 @@
     align-items: center;
     width: 100%;
     height: 30px;
+}
+
+// SNACKBAR ERROR
+::ng-deep snack-bar-container.snackbar-error {
+    background: #ba000d;
+}
+
+::ng-deep .snackbar-error .mat-simple-snackbar {
+    color: white;
+}
+
+// SNACKBAR SUCCESS
+::ng-deep snack-bar-container.snackbar-success {
+    background: #087f23;
+}
+
+::ng-deep .snackbar-success .mat-simple-snackbar {
+    color: white;
 }

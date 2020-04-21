@@ -20,6 +20,21 @@ export class CreateUserDto {
 
   @ApiProperty({
     type: String,
+    description: 'L\'avatar de l\'utilisateur',
+    default: 'hispter.png'
+  })
+  readonly avatar: string;
+
+  @ApiProperty({
+    type: String,
+    description: 'L\'adresse de l\'utilisateur',
+    default: '99 quai des orfevres 95000 Paris'
+  })
+  readonly address: string;
+
+
+  @ApiProperty({
+    type: String,
     description: 'Le mot de passe de l\'utilisateur',
     default: 'monchienestuncretin'
   })
