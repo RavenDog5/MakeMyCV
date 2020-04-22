@@ -40,6 +40,9 @@ export class NavigationComponent implements OnInit, DoCheck {
         this.userLogged = this.nav.getUserConnected();
         this.logged = true;
         this.routes = this.nav.getRoutes();
+        if (this.userLogged.avatar === '') {
+          this.userLogged.avatar = '../../assets/avatar/warrior.png';
+        }
         // console.log('user connected : ', this.userLogged);
         // Récupérer les données de l'utilisateur
       } else {

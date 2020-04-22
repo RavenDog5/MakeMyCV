@@ -14,8 +14,7 @@ export class ProfilComponent implements OnInit {
 
   user;
   form = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+    username: new FormControl(''),
     avatar: new FormControl(''),
     adresse: new FormControl(''),
     email: new FormControl('', Validators.email)
@@ -41,13 +40,13 @@ export class ProfilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   this.accService.getAccount(this.authService.userConnected.id).subscribe( res => {
-     const noms = res.name.split(' ');
+   this.accService.getAccount(this.authService.userConnected.email).subscribe( res => {
+     console.log('resultat PROFIL : ', res );
      this.form.patchValue({
-       firstName: noms[0],
-       lastName: noms[1],
-       avatar: res.avatar,
-       adresse: res.adresse
+      username: res.username,
+      email: res.email,
+      avatar: res.avatar,
+      adresse: res.adresse
      });
     // this.user = res;
    }, err => console.error(err));

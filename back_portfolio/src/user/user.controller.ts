@@ -34,7 +34,7 @@ export class UserController {
     @ApiOperation({ summary: 'Get a user with his/her email address' })
     @ApiOkResponse({ description: 'A user has been found with this email !'})
     @ApiForbiddenResponse({ description: 'Forbidden.'})
-    async findMe(@Param('email') userEmail: string): Promise<UserRO> {
+    async findMe(@Param('email') userEmail: string): Promise<UpdateUserDto> {
       return await this.userService.findByEmail(userEmail);
     }
 
@@ -51,7 +51,7 @@ export class UserController {
       const token = this.userService.generateJwt(_user)
       const {email, username, avatar} = _user;
       const user = {email, token, username, avatar};
-      return {user}
+      return {user};
     }
 
 

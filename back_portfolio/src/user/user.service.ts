@@ -71,13 +71,13 @@ export class UserService {
 
     }
 
-    async findByEmail (email: string): Promise<UserRO> {
+    async findByEmail (email: string): Promise<UpdateUserDto> {
         const user = await this.userRepository.findOne({email: email});
 
         if(!user){
             throw new HttpException({ message: "Pas d'utilisateur pour cet email"}, HttpStatus.NOT_FOUND);
         } else {
-            return this.buildUserRO(user);
+            return user;
         }
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Skill } from '../skills.model';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkillService } from '../skills.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -11,20 +12,28 @@ import { SkillService } from '../skills.service';
 export class CreateSkillComponent {
 
   hide = true;
-  newSkill: Skill = new Skill();
-
+  newSkillForm = new FormGroup({
+    name: new FormControl('',  Validators.required),
+    level: new FormControl('', [Validators.max(10), Validators.required])
+  });
   constructor(
     public dialogRef: MatDialogRef<CreateSkillComponent>,
     private skillService: SkillService
   ) { }
 
-  onNoClick(): void {
+  reset(): void {
     this.dialogRef.close();
   }
 
-  onOkClick(skill: Skill): void {
-    this.skillService.add(skill)
-    .subscribe( data => { }, err => console.error(err));
+  submit(): void {
+
+    const newSkill = new Skill();
+    newSkill.name = this.newSkillForm.value.name;
+    newSkill.level = this.newSkillForm.value.level;
+    newSkill.countUsedIn = 0;
+
+    this.skillService.add(newSkill)
+    .subscribe( () => { }, err => console.error(err));
     this.dialogRef.close('ok');
   }
 

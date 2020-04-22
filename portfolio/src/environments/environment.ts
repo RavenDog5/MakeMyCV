@@ -18,9 +18,9 @@ export const environment = {
   Api : {
     entrypoint : 'http://localhost:3009',
     endpoints : {
-      skills : 'competences',
+      skills : 'skill',
       account : 'user',
-      experiences : 'experiences',
+      experiences : 'experience',
       login: 'user/login',
       register: 'user',
       adress: 'utils/address',

@@ -34,7 +34,7 @@ export class AuthService {
       email: mail,
       password: pass
     };
-    console.log('user to log : ', user);
+    // console.log('user to log : ', user);
     return this.http.post(this.API_URL + '/' + this.endPointLogin, user);
   }
 
@@ -45,15 +45,15 @@ export class AuthService {
 
     localStorage.setItem('idToken', authResult.user.token);
     
-    console.log('RESULT : ', authResult);
+    // console.log('RESULT : ', authResult);
     this.userConnected = {
       username: authResult.user.username,
       avatar: authResult.user.avatar,
       email: authResult.user.email,
       token: authResult.user.token
     };
-    console.log('AUTHSERVICE');
-    console.log('User Connected Infos :', this.userConnected);
+    // console.log('AUTHSERVICE');
+    // console.log('User Connected Infos :', this.userConnected);
   }
 
   register(newUser: User): Observable<any> {

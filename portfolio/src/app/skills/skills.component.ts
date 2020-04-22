@@ -33,7 +33,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
-    this.displayedColumns = ['name', 'level'];
+    this.displayedColumns = ['id', 'name', 'level', 'actions'];
   }
 
   // DIALOG CREATE
@@ -92,10 +92,13 @@ export class SkillsComponent implements OnInit {
 
    private getAll(): void {
     this.skillService.getAll()
-      .subscribe( data => {
-        this.dataSource = new MatTableDataSource<Skill>(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+      .subscribe( (data: any) => {
+        if (data != null) {
+          console.log('Skills : ', data.skills);
+          this.dataSource = new MatTableDataSource<Skill>(data.skills);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
       }, err => console.error(err));
   }
 }

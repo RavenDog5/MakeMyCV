@@ -16,6 +16,7 @@ export interface FeatureCollection {
   filters: any;
   limit: number;
 }
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -84,7 +85,7 @@ export class AuthComponent implements OnInit {
   login(): void {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
     .subscribe(res => {
-      console.log('resultat : ', res);
+      // console.log('resultat : ', res);
       this.authService.setSession(res);
       this.router.navigate(['dashboard']);
     }, err => {

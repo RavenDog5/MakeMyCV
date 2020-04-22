@@ -46,6 +46,27 @@ export class SkillsService {
         
     }
 
+    async createOne(dto: SkillDto): Promise<SkillEntity> {
+        
+        const skill = new SkillEntity();
+        skill.name = dto.name;
+        skill.level = dto.level;
+        skill.countUsedIn = 0;
+        // skill.countUsedIn++;
+
+        // On ajoute la nouvelle compétence
+        const newSkill = await this.skillRepository.save(skill);
+
+        // On lie la nouvelle compétence à l'experience
+        // const experienceRelated = await this.xpRespository.findOne({ where: { id: xpId}, relations: ['skills']});
+        // if(experienceRelated) {
+        //     experienceRelated.skills.push(skill);
+        //     await this.xpRespository.save(experienceRelated);
+        // }
+        return newSkill;
+
+    }
+
     async create(xpId: number, dto: SkillDto): Promise<SkillEntity> {
         
         const skill = new SkillEntity();
