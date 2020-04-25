@@ -9,12 +9,6 @@ export class SkillDto {
     })
     readonly name: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The level of the user\'s skill',
-        example: '9'
-    })
-    readonly level: string;
 }
 
 export class AssignToDto {

@@ -7,9 +7,9 @@ export const environment = {
   assets : '../../assets/',
   routes: {
     logged: [
-        { label: 'Compétences', path: 'skills', icon: 'explore'},
-        { label: 'Experiences', path: 'experiences', icon: 'work'},
-        { label: 'Tableau de bord', path: 'dashboard', icon: 'dashboard'},
+      { label: 'Tableau de bord', path: 'dashboard', icon: 'dashboard'},
+      { label: 'Experiences', path: 'experiences', icon: 'work'},
+      { label: 'Compétences', path: 'skills', icon: 'explore'},
     ],
     notLogged: [
     {label: 'Connexion', path: 'auth', icon: 'person' }

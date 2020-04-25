@@ -8,11 +8,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AboutComponent } from './about/about.component';
 import { AuthGuard } from './auth.guard';
 import { ProfilComponent } from './profil/profil.component';
+import { CreateExperienceComponent } from './experiences/create/create.component';
+import { EditExperienceComponent } from './experiences/edit/edit.component';
 
 
 export const routes: Routes = [
   { path: 'skills', component: SkillsComponent, canActivate: [AuthGuard]},
   { path: 'experiences', component: ExperiencesComponent, canActivate: [AuthGuard]},
+  { path: 'experiences/create', component: CreateExperienceComponent, canActivate: [AuthGuard]},
+  { path: 'experiences/edit', component: EditExperienceComponent, canActivate: [AuthGuard]},
   { path: 'account', component: ProfilComponent, canActivate: [AuthGuard]},
   { path: 'auth', component: AuthComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

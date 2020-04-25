@@ -3,9 +3,6 @@
     display: inline-flex;
     justify-content: flex-end;
 }
-.full-width {
-    width: 100%;
-}
 
 .btn-register{
     margin-left: 10px;
@@ -48,20 +45,21 @@
     height: 30px;
 }
 
-// SNACKBAR ERROR
-::ng-deep snack-bar-container.snackbar-error {
+  // SNACKBAR ERROR
+  ::ng-deep snack-bar-container.snackbar-error {
     background: #ba000d;
-}
-
-::ng-deep .snackbar-error .mat-simple-snackbar {
+  }
+  
+  ::ng-deep .snackbar-error .mat-simple-snackbar {
     color: white;
-}
-
-// SNACKBAR SUCCESS
-::ng-deep snack-bar-container.snackbar-success {
+  }
+  
+  // SNACKBAR SUCCESS
+  ::ng-deep snack-bar-container.snackbar-success {
     background: #087f23;
-}
-
-::ng-deep .snackbar-success .mat-simple-snackbar {
+  }
+  
+  ::ng-deep .snackbar-success .mat-simple-snackbar {
     color: white;
-}
+  }
+  

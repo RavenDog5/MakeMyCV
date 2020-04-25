@@ -9,6 +9,7 @@ export interface IApiService<T> {
     getAll(): Observable<T[]>;
     getOne(id: number): Observable<T>;
     add(entity: T): Observable<T>;
+    addDependant(entity: T, idOwner: number): Observable<T>;
     edit(entity: T, id: number);
     remove(id: number);
   }

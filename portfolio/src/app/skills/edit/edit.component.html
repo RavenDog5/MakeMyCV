@@ -1,23 +1,27 @@
-<h1 mat-dialog-title>Modification de {{data.name}}</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title>Modification de la compétence</h1>
+<form [formGroup]="editSkillForm">
+  <div mat-dialog-content>
     <p>Vous pouvez modifier ces champs :</p>
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
-            <mat-form-field appearance="outline">
-                <mat-label>Nom</mat-label>
-                <input matInput [(ngModel)]="data.name">
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-form-field appearance="outline">
-                <mat-label>Nom</mat-label>
-                <input matInput [(ngModel)]="data.level">
-            </mat-form-field>
-        </mat-grid-tile>
-    </mat-grid-list>
-  
-</div>
-<div mat-dialog-actions class="flex-end">
-  <button mat-button (click)="onNoClick()">Annuler</button>
-  <button mat-button (click)="onOkClick(data)" color='primary'>Ok</button>
-</div>
+
+    < <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Nom de la compétence</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="editSkillForm.controls['name'].errors?.required">Un nom pour la compétence est requis.</mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Niveau de la compétence (sur 10) :</mat-label>
+        <input matInput formControlName="level" type="number" maxlength="2">
+        <mat-error *ngIf="editSkillForm.controls['level'].errors?.max">Le niveau doit être égal ou inférieur à 10</mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+  </div>
+  <div mat-dialog-actions class="flex-end">
+    <button mat-button (click)="reset()">Annuler</button>
+    <button mat-button (click)="submit()" type="submit" color='primary'>Ok</button>
+  </div>
+</form>

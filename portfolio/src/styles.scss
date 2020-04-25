@@ -8,3 +8,58 @@ body { margin: 0; }
     display: inline-flex;
     justify-content: flex-end;
 }
+table {
+  width: 100%;
+}
+.full-width {
+  width: 100%;
+}
+.almost-full-width {
+  width: 80%;
+}
+.card-title {
+    padding: 16px;
+    border-radius: 5px;
+    min-height: 70px;
+    margin-top: -55px!important;
+    display: inline-flex;
+    width: -webkit-fill-available;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    background: linear-gradient(to left, #f44336, #5e35b1);
+    color: white;
+    h1 {
+      margin: 0;
+    }
+  }
+// Color !
+$sucess: #388e3c default;
+
+
+  // SNACKBAR ERROR
+  ::ng-deep snack-bar-container.snackbar-error {
+    background: #ba000d;
+  }
+  
+  ::ng-deep .snackbar-error .mat-simple-snackbar {
+    color: white;
+  }
+  
+  // SNACKBAR SUCCESS
+  ::ng-deep snack-bar-container.snackbar-success {
+    background: #087f23;
+  }
+  
+  ::ng-deep .snackbar-success .mat-simple-snackbar {
+    color: white;
+  }
+
+   // SNACKBAR INFO
+   ::ng-deep snack-bar-container.snackbar-info {
+    background: #3949ab;
+  }
+  
+  ::ng-deep .snackbar-info .mat-simple-snackbar {
+    color: white;
+  }

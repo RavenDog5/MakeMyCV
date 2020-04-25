@@ -94,7 +94,7 @@ export class SkillsComponent implements OnInit {
     this.skillService.getAll()
       .subscribe( (data: any) => {
         if (data != null) {
-          console.log('Skills : ', data.skills);
+          // console.log('Skills : ', data.skills);
           this.dataSource = new MatTableDataSource<Skill>(data.skills);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

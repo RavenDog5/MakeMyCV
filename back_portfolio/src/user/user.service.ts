@@ -81,18 +81,23 @@ export class UserService {
         }
     }
 
-    async update(id: number, dto: UpdateUserDto): Promise<UserEntity> {
+    async update(id: number, dto: UpdateUserDto): Promise<UpdateUserDto> {
         let toUpdate = await this.userRepository.findOne(id);
+        // console.log('password : ', );
+        delete toUpdate.password;
+
         let updated = Object.assign(toUpdate, dto);
         return await this.userRepository.save(updated);
+        
     }
 
     async resetPassword(id: number, dto: resetPasswordDto): Promise<UserEntity> {
         let toUpdate = await this.userRepository.findOne(id);
         // RAZ du champ "Password"
         delete toUpdate.password;
-        let updated = Object.assign(toUpdate, dto);
-        return await this.userRepository.save(updated);
+        dto.password = await bcrypt.hash(dto.password, 10);
+        toUpdate.password = dto.password;
+        return await this.userRepository.save(toUpdate);
     }
     
     async delete(email: string): Promise<DeleteResult> { 

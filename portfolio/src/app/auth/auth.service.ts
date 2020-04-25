@@ -39,12 +39,7 @@ export class AuthService {
   }
 
   setSession(authResult): void {
-
-    // Hash email
-    // const hash = bcrypt.hashSync(authResult.user.email, 10);
-
     localStorage.setItem('idToken', authResult.user.token);
-    
     // console.log('RESULT : ', authResult);
     this.userConnected = {
       username: authResult.user.username,
@@ -63,6 +58,10 @@ export class AuthService {
   logout() {
     localStorage.removeItem('idToken');
     this.userConnected = null;
+  }
+
+  getByEmail(email:string): Observable<any> {
+    return this.http.get(this.API_URL + '/' + this.endPointRegister + '/' + email);
   }
 
   public isLoggedIn(): boolean {

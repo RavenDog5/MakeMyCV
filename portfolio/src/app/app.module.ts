@@ -25,16 +25,25 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { SkillsComponent } from './skills/skills.component';
 import { ExperiencesComponent } from './experiences/experiences.component';
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+// SKILL
 import { CreateSkillComponent } from './skills/create/create.component';
 import { EditSkillComponent } from './skills/edit/edit.component';
 import { DeleteSkillComponent } from './skills/delete/delete.component';
+
+// EXPERIENCE
+import { CreateExperienceComponent } from './experiences/create/create.component';
+import { EditExperienceComponent } from './experiences/edit/edit.component';
+import { DeleteExperienceComponent } from './experiences/delete/delete.component';
+
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -43,6 +52,8 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth/auth.service';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ProfilComponent } from './profil/profil.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +68,9 @@ import { ProfilComponent } from './profil/profil.component';
     AboutComponent,
     NavigationComponent,
     ProfilComponent,
+    CreateExperienceComponent,
+    EditExperienceComponent,
+    DeleteExperienceComponent
   ],
   imports: [
     BrowserModule,
@@ -83,13 +97,20 @@ import { ProfilComponent } from './profil/profil.component';
     MatSortModule,
     MatMenuModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
     MatSelectModule,
-    HttpClientModule
+    MatChipsModule,
+    HttpClientModule,
+    MatNativeDateModule
   ],
   entryComponents: [
 
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    MatDatepickerModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

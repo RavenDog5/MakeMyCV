@@ -4,6 +4,8 @@ import { AuthService } from '../auth/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeatureCollection } from '../auth/auth.component';
+import { User } from '../auth/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -14,10 +16,12 @@ export class ProfilComponent implements OnInit {
 
   user;
   form = new FormGroup({
+    id: new FormControl(''),
     username: new FormControl(''),
     avatar: new FormControl(''),
-    adresse: new FormControl(''),
-    email: new FormControl('', Validators.email)
+    address: new FormControl(''),
+    email: new FormControl('', Validators.email),
+    phone: new FormControl('', [Validators.maxLength(10), Validators.minLength(10)])
   });
 
   avatars = [
@@ -36,37 +40,22 @@ export class ProfilComponent implements OnInit {
   constructor(
     private accService: ProfilService,
     private authService: AuthService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
    this.accService.getAccount(this.authService.userConnected.email).subscribe( res => {
-     console.log('resultat PROFIL : ', res );
+    //  console.log('resultat PROFIL : ', res );
      this.form.patchValue({
+      id: res.id,
       username: res.username,
       email: res.email,
       avatar: res.avatar,
-      adresse: res.adresse
+      address: res.address,
+      phone: res.phone
      });
-    // this.user = res;
    }, err => console.error(err));
-  }
-
-  generatePassword(): void {
-    if (this.form.value.password !== '') {
-      this.form.patchValue({
-        password: ''
-      });
-    }
-    this.authService.getPasswordGenerated().subscribe( (res) => {
-
-      this.form.patchValue({
-        password:  res[0].password
-      });
-      const msg = 'Notez bien le mot de passe généré : ' + res[0].password + '\n Le mot de passe est directement renseigné 😉';
-      this.snackbar.open(msg, 'C\'est noté !', {});
-      this.genPass = 'Un autre mot de passe ?';
-    }, err => console.error(err));
   }
 
   search(): void {
@@ -80,6 +69,31 @@ export class ProfilComponent implements OnInit {
         }
       }, err => console.error(err));
     }, 250);
+  }
+
+  reset(): void {
+    this.form.clearValidators();
+    this.form.reset();
+  }
+
+  submit(): void {
+    const updatedUser = {
+      id: this.form.value.id,
+      username: this.form.value.username,
+      avatar: this.form.value.avatar,
+      address: this.form.value.address,
+      email: this.form.value.email,
+      phone: this.form.value.phone,
+    };
+
+    this.accService.updateAccount(updatedUser.id, updatedUser).subscribe( (res) => {
+      console.log('resultat de la mise à jour', res);
+      const message = 'Mise à jour du profil faite ! ✅ ';
+      const infoMessage = 'Important ! pour voir les changements, merci de vous reconnecter.';
+      // this.snackbar.open(message, '', {duration: 1500, panelClass: ['snackbar-success']});
+      this.snackbar.open(message + '\n' + infoMessage, 'Compris !', { panelClass: ['snackbar-info']});
+    }, err => { console.log('ERREUR : ', err); });
+    this.router.navigate(['dashboard']);
   }
 
 }

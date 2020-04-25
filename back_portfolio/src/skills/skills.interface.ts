@@ -1,9 +1,7 @@
 import { SkillEntity } from "./skills.entity";
 
-
 export interface SkillData {
     name: string;
-    level: string;
 
 }
 

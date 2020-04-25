@@ -6,36 +6,62 @@
   <mat-card-content class="content">
     <form [formGroup]="form">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Pseudo</mat-label>
-        <input matInput formControlName="username">
-      </mat-form-field>
+      <mat-grid-list cols="2" rowHeight="100px">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Avatar</mat-label>
-        <mat-select formControlName="avatar" name="avatar">
-          <mat-option *ngFor='let img of avatars' [value]="img.img">
-            <img src="{{img.img}}" height="26" width="26" style="margin-right: 10px;"> {{img.label}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="almost-full-width">
+            <mat-label>Pseudo</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Adresse</mat-label>
-        <input matInput formControlName="adresse" (ngModelChange)="search()" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor='let option of options' [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="almost-full-width">
+            <mat-label>Avatar</mat-label>
+            <mat-select formControlName="avatar" name="avatar">
+              <mat-option *ngFor='let img of avatars' [value]="img.img">
+                <img src="{{img.img}}" height="26" width="26" style="margin-right: 10px;"> {{img.label}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email">
-        <mat-icon matSuffix>email</mat-icon>
-        <mat-error *ngIf="form.controls['email'].errors?.email">L'email saisi est mal formé.</mat-error>
-      </mat-form-field>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="almost-full-width">
+            <mat-label>Adresse</mat-label>
+            <input matInput formControlName="address" (ngModelChange)="search()" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor='let option of options' [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </mat-grid-tile>
 
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="almost-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="form.controls['email'].errors?.email">L'email saisi est mal formé.</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="almost-full-width">
+            <mat-label>Numéro de téléphone</mat-label>
+            <input matInput formControlName="phone">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="form.controls['phone'].errors?.maxlength">Le numéro de téléphone doit être composé de 10 chiffres !</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+      <div class="flex-end">
+        <button mat-button (click)="reset()">Annuler</button>
+        <button mat-flat-button (click)="submit()" [disabled]="!form.valid" type="submit" color='success'>Mettre à jour</button>
+      </div>
     </form>
+
+
   </mat-card-content>
 </mat-card>

@@ -21,15 +21,6 @@ export class SkillsService {
     async findAll(query): Promise<SkillsRO> {
         const qb = await getRepository(SkillEntity)
             .createQueryBuilder('skill')
-            // .leftJoinAndSelect('skill.owner', 'owner' );
-
-        // qb.where('1 = 1');
-
-        // if('experience' in query){
-        //     const experienceFound = await this.xpRespository.findOne({id: query.id});
-        //     qb.where('skill.ownerId IN = :id ', {id: experienceFound.id})
-        // }
-        
         const skills = await qb.getMany();
         return {skills};
 
@@ -50,7 +41,6 @@ export class SkillsService {
         
         const skill = new SkillEntity();
         skill.name = dto.name;
-        skill.level = dto.level;
         skill.countUsedIn = 0;
         // skill.countUsedIn++;
 
@@ -71,7 +61,7 @@ export class SkillsService {
         
         const skill = new SkillEntity();
         skill.name = dto.name;
-        skill.level = dto.level;
+        // skill.level = dto.level;
         skill.countUsedIn = 0;
         skill.countUsedIn++;
 

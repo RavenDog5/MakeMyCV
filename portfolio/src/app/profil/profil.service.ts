@@ -19,4 +19,11 @@ export class ProfilService {
     getAccount(id: number): Observable<any> {
       return this.http.get<any>(this.API_URL + '/' + this.EntityEndpoint + '/' + id);
     }
+
+    updateAccount(id: number, userData) {
+      console.log('id : ', id);
+      console.log('user data : ', userData);
+      // return {id} ;
+      return this.http.put<any>(this.API_URL + '/' + this.EntityEndpoint + '/' + id, userData);
+    }
 }

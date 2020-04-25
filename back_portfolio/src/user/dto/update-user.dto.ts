@@ -43,5 +43,5 @@ export class resetPasswordDto {
     description: 'The user\'s password',
     default: 'imblue'
   })
-  readonly password: string;
+  password: string;
 }

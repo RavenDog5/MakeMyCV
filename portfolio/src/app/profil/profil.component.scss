@@ -1,6 +1,5 @@
 .card {
     margin-top: 80px;
-    width: 20%;
   }
   
   .card-title-start {
@@ -23,4 +22,13 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+}
+
+ // SNACKBAR INFO
+ ::ng-deep snack-bar-container.snackbar-info {
+  background: #3949ab;
+}
+
+::ng-deep .snackbar-info .mat-simple-snackbar {
+  color: white;
 }

@@ -11,9 +11,6 @@ export class SkillEntity {
     @Column()
     name: string;
 
-    @Column()
-    level: string;
-
     @Column({default: 0})
     countUsedIn: number;
 }
