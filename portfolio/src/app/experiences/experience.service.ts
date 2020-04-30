@@ -14,9 +14,9 @@ export class ExperienceService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable < Experience[] > {
+  getAll(id: number): Observable < Experience[] > {
     // console.log('[GET] URL : ', this.API_URL + '/' + this.EntityEndpoint);
-    return this.http.get < Experience[] > (this.API_URL + '/' + this.EntityEndpoint);
+    return this.http.get < Experience[] > (this.API_URL + '/' + this.EntityEndpoint + '/' + id);
   }
 
   getOne(id: number): Observable < Experience > {
@@ -39,5 +39,5 @@ export class ExperienceService {
     // console.log('[DELETE] URL : ', this.API_URL + '/' + this.EntityEndpoint + '/' + id);
     return this.http.delete < Experience > (this.API_URL + '/' + this.EntityEndpoint + '/' + id);
   }
- 
+
 }

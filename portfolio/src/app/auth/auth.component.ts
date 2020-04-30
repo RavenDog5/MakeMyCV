@@ -84,9 +84,14 @@ export class AuthComponent implements OnInit {
 
   login(): void {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
-    .subscribe(res => {
+    .subscribe( (res: any) => {
       // console.log('resultat : ', res);
       this.authService.setSession(res);
+      this.authService.getByEmail(this.authService.userConnected.email).subscribe( result => {
+        console.log('Resultat : ', result);
+        this.authService.userConnected.id = result.id;
+        console.log('Résultat de la requete : ', this.authService.userConnected);
+      });
       this.router.navigate(['dashboard']);
     }, err => {
       console.log('ERREUR ', err);

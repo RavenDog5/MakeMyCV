@@ -4,9 +4,12 @@ import { SkillsController } from './skills.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SkillEntity } from './skills.entity';
 import { ExperienceEntity } from 'src/experience/experience.entity';
+import { ExperienceService } from 'src/experience/experience.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SkillEntity, ExperienceEntity])],
+  imports: [
+    TypeOrmModule.forFeature([SkillEntity, ExperienceEntity])
+  ],
   controllers: [SkillsController],
   providers: [SkillsService]
 })

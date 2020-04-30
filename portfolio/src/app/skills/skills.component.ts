@@ -33,7 +33,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
-    this.displayedColumns = ['id', 'name', 'level', 'actions'];
+    this.displayedColumns = ['id', 'name', 'actions'];
   }
 
   // DIALOG CREATE
@@ -65,7 +65,7 @@ export class SkillsComponent implements OnInit {
     dialogRef.afterClosed()
     .subscribe(result => {
       if (result === 'ok' ) {
-        this.snackbar.open('Modification réussie  !', '', { duration: 1000,  });
+        this.snackbar.open('Modification réussie  !', '', { duration: 1000});
         this.getAll();
       }
       });

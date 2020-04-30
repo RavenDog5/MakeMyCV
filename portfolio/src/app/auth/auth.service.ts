@@ -15,6 +15,7 @@ export class AuthService {
   endPointPassword: string = environment.Api.endpoints.password;
   endPointAdress: string = environment.Api.endpoints.adress;
   userConnected = null;
+  idUser: number;
 
   constructor(private http: HttpClient) { }
 
@@ -40,15 +41,15 @@ export class AuthService {
 
   setSession(authResult): void {
     localStorage.setItem('idToken', authResult.user.token);
-    // console.log('RESULT : ', authResult);
     this.userConnected = {
+      id: -1,
       username: authResult.user.username,
       avatar: authResult.user.avatar,
       email: authResult.user.email,
       token: authResult.user.token
     };
-    // console.log('AUTHSERVICE');
-    // console.log('User Connected Infos :', this.userConnected);
+    // TEST
+    console.log('[auth.service.ts] userConnected : ', this.userConnected);
   }
 
   register(newUser: User): Observable<any> {
@@ -60,7 +61,7 @@ export class AuthService {
     this.userConnected = null;
   }
 
-  getByEmail(email:string): Observable<any> {
+  getByEmail(email: string): Observable<any> {
     return this.http.get(this.API_URL + '/' + this.endPointRegister + '/' + email);
   }
 

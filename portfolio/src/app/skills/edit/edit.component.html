@@ -3,7 +3,7 @@
   <div mat-dialog-content>
     <p>Vous pouvez modifier ces champs :</p>
 
-    < <mat-grid-tile>
+    <mat-grid-tile>
       <mat-form-field appearance="outline">
         <mat-label>Nom de la compétence</mat-label>
         <input matInput formControlName="name">
@@ -11,13 +11,13 @@
       </mat-form-field>
     </mat-grid-tile>
 
-    <mat-grid-tile>
+    <!-- <mat-grid-tile>
       <mat-form-field appearance="outline">
         <mat-label>Niveau de la compétence (sur 10) :</mat-label>
         <input matInput formControlName="level" type="number" maxlength="2">
         <mat-error *ngIf="editSkillForm.controls['level'].errors?.max">Le niveau doit être égal ou inférieur à 10</mat-error>
       </mat-form-field>
-    </mat-grid-tile>
+    </mat-grid-tile> -->
 
   </div>
   <div mat-dialog-actions class="flex-end">

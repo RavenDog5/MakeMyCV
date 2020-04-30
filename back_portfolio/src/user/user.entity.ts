@@ -3,6 +3,7 @@ import { IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt';
 import { SkillEntity } from 'src/skills/skills.entity';
 import { ExperienceEntity } from 'src/experience/experience.entity';
+import { FormationEntity } from 'src/formation/formation.entity';
 
 
 @Entity('user')
@@ -37,4 +38,7 @@ export class UserEntity {
 
     @OneToMany( type => ExperienceEntity, experience => experience.owner)
     experiences: ExperienceEntity[];
+
+    @OneToMany( type => FormationEntity, formation => formation.user)
+    formations: FormationEntity[];
 }

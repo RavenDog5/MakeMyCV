@@ -28,7 +28,6 @@ export class SkillsController {
     @ApiOkResponse({ description: 'Skill successfully created !'})
     @ApiResponse({ status: 201, description: 'Compétence créée avec succès !'})
     async createOne(@Body() skillData: SkillDto) {
-        // console.log('[POST] CREATE Skill : ', skillData);
         return this.skillService.createOne(skillData);
     }
 
@@ -38,7 +37,6 @@ export class SkillsController {
     @ApiOkResponse({ description: 'Skill successfully created !'})
     @ApiResponse({ status: 201, description: 'Compétence créée avec succès !'})
     async create(@Param('id') id: number,@Body() skillData: SkillDto) {
-        // console.log('[POST] CREATE Skill : ', skillData);
         return this.skillService.create(id, skillData);
     }
 
@@ -46,7 +44,6 @@ export class SkillsController {
     @Post('detail/:id')
     @ApiOperation({ summary: 'Get The detail of a skill'})
     async getOne(@Param('id') id: number) {
-        // console.log('[POST] DETAIL skill : ', id)
         return this.skillService.findOne(id);
     }
 

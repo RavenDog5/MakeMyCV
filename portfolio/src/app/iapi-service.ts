@@ -6,7 +6,7 @@ export interface IApiService<T> {
     EntityEndpoint: string;
 
     // FUNCTIONS
-    getAll(): Observable<T[]>;
+    getAll(id: number): Observable<T[]>;
     getOne(id: number): Observable<T>;
     add(entity: T): Observable<T>;
     addDependant(entity: T, idOwner: number): Observable<T>;

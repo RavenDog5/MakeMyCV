@@ -13,10 +13,10 @@ export class ExperienceController {
         private xpService: ExperienceService
     ) { }
 
-    @Get()
+    @Get(':id')
     @ApiOperation({ summary: 'Get all experiences'})
-    async getAll(@Query() query): Promise<xpsRO> {
-        return this.xpService.findAll();
+    async getAll(@Param('id') idUser: number): Promise<xpsRO> {
+        return this.xpService.findAll(idUser);
     }
 
     @Post(':id')

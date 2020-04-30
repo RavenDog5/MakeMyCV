@@ -15,9 +15,9 @@ export class ApiService<T> implements IApiService < T > {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable < T[] > {
+  getAll(id: number): Observable < T[] > {
     // console.log('[GET] URL : ', this.API_URL + '/' + this.EntityEndpoint);
-    return this.http.get < T[] > (this.API_URL + '/' + this.EntityEndpoint);
+    return this.http.get < T[] > (this.API_URL + '/' + this.EntityEndpoint + '/' + id);
   }
 
   getOne(id: number): Observable < T > {

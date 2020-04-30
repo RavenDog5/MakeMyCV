@@ -16,13 +16,19 @@ export class ExperienceService {
         private readonly userRepository: Repository<UserEntity>
     ) { }
 
-    async findAll(): Promise<xpsRO> {
+    async findAllTo(): Promise<xpsRO> {
+        const experiences = await this.xpRepository.find({ relations: ['skills']})
+        return {experiences};
+    }
+
+    
+    async findAll(idUser: number): Promise<xpsRO> {
         // const qb = await getRepository(ExperienceEntity)
         //     .createQueryBuilder('experience');
 
         // const experiences = await qb.getMany();
         // return {experiences};
-        const experiences = await this.xpRepository.find({relations: ['skills']})
+        const experiences = await this.xpRepository.find({ where: {owner: idUser}, relations: ['skills']})
         return {experiences};
     }
 
@@ -38,6 +44,7 @@ export class ExperienceService {
             user.experiences.push(created);
             await this.userRepository.save(user);
         }
+        // On ne veut pas les relation de l'utilisateur
         const userRelated = await this.userRepository.findOne({id: user.id});
         created.owner = userRelated;
 

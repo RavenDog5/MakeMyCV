@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EditExperienceComponent } from './edit/edit.component';
 import { DeleteExperienceComponent } from './delete/delete.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-experiences',
@@ -20,6 +21,7 @@ export class ExperiencesComponent implements OnInit {
 
   constructor(
     private experienceService: ExperienceService,
+    private authService: AuthService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router
@@ -38,7 +40,9 @@ export class ExperiencesComponent implements OnInit {
   }
 
   private getAll(): void {
-    this.experienceService.getAll()
+
+
+    this.experienceService.getAll(this.authService.userConnected.id)
       .subscribe ( (data: any) => {
         if (data != null) {
           // console.log('Experience : ', data.experiences);
@@ -48,6 +52,7 @@ export class ExperiencesComponent implements OnInit {
         }
       }, err => console.error(err));
   }
+
 
   // NEW
   newExperience(): void {

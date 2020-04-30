@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SkillsModule } from './skills/skills.module';
 import { ExperienceModule } from './experience/experience.module';
 import { UtilsModule } from './utils/utils.module';
+import { FormationModule } from './formation/formation.module';
 
 @Module({
   imports: [
@@ -21,8 +22,9 @@ import { UtilsModule } from './utils/utils.module';
     }),
     UserModule,
     SkillsModule,
+    FormationModule,
     ExperienceModule,
-    UtilsModule
+    UtilsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

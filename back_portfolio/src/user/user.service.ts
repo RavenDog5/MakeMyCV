@@ -19,7 +19,7 @@ export class UserService {
     ) { }
 
     async findAll(): Promise<UserEntity[]> {
-        return await this.userRepository.find({relations: ['experiences']});
+        return await this.userRepository.find({relations: ['experiences', 'formations']});
     }
 
     async findOneToLogin({email, password}: LoginUserDto): Promise<UserEntity> {
