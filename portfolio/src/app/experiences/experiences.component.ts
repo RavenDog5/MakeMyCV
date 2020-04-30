@@ -5,11 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Experience } from './experience.model';
-import { CreateExperienceComponent } from './create/create.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { EditExperienceComponent } from './edit/edit.component';
 import { DeleteExperienceComponent } from './delete/delete.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -59,7 +57,7 @@ export class ExperiencesComponent implements OnInit {
     this.router.navigate(['experiences/create']);
   }
 
-    // DIALOG EDIT
+    // EDIT
     editExperience(experience: Experience): void {
       this.experienceService.stockData = experience;
       this.router.navigate(['experiences/edit']);
@@ -77,7 +75,7 @@ export class ExperiencesComponent implements OnInit {
       dialogRef.afterClosed()
       .subscribe(result => {
         if (result === 'ok' ) {
-          this.snackbar.open('Compétence supprimée avec succès !', '', { duration: 1000,  });
+          this.snackbar.open('Expérience supprimée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
           this.getAll();
         }
       });

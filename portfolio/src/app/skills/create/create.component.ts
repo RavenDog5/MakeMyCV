@@ -14,7 +14,6 @@ export class CreateSkillComponent {
   hide = true;
   newSkillForm = new FormGroup({
     name: new FormControl('',  Validators.required),
-    level: new FormControl('', [Validators.max(10), Validators.required])
   });
   constructor(
     public dialogRef: MatDialogRef<CreateSkillComponent>,
@@ -29,7 +28,6 @@ export class CreateSkillComponent {
 
     const newSkill = new Skill();
     newSkill.name = this.newSkillForm.value.name;
-    newSkill.level = this.newSkillForm.value.level;
     newSkill.countUsedIn = 0;
 
     this.skillService.add(newSkill)

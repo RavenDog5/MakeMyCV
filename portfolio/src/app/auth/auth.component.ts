@@ -3,19 +3,9 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { User } from './user.model';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FeatureCollection } from '../FeatureCollection.interface';
 
-
-export interface FeatureCollection {
-  type: string;
-  version: string;
-  features: any;
-  attribution: string;
-  licence: string;
-  query: string;
-  filters: any;
-  limit: number;
-}
 
 @Component({
   selector: 'app-auth',
@@ -88,16 +78,16 @@ export class AuthComponent implements OnInit {
       // console.log('resultat : ', res);
       this.authService.setSession(res);
       this.authService.getByEmail(this.authService.userConnected.email).subscribe( result => {
-        console.log('Resultat : ', result);
+        // console.log('Resultat : ', result);
         this.authService.userConnected.id = result.id;
-        console.log('Résultat de la requete : ', this.authService.userConnected);
+        // console.log('Résultat de la requete : ', this.authService.userConnected);
       });
       this.router.navigate(['dashboard']);
     }, err => {
       console.log('ERREUR ', err);
       if (err.status === 401) {
-        const message = ' ❌🙅‍♀️ Utilisateur inconnu';
-        this.snackbar.open(message, '', {panelClass: ['snackbar-error'], duration: 2500});
+        const message = ' ❌ Utilisateur inconnu 🙅‍♀️';
+        this.snackbar.open(message, '', {panelClass: ['snackbar-error'], duration: 3500});
       }
     });
   }
@@ -118,11 +108,11 @@ export class AuthComponent implements OnInit {
     this.authService.register(this.newUser)
     .subscribe( () => {
       const message = 'Utilisateur créé avec succès ! Vous pouvez vous connecter maintenant 😉';
-      this.snackbar.open( message, 'Ok !', {panelClass: ['snackbar-success'], duration: 3000});
+      this.snackbar.open( message, 'Ok !', {panelClass: ['snackbar-success'], duration: 3500});
     }, err => {
       if (err.status === 400) {
         const message = 'L\'email ou le pseudo est déjà existant, veuillez réessayer. ❌';
-        this.snackbar.open( message, 'Ok !', {panelClass: ['snackbar-error'], duration: 3000});
+        this.snackbar.open( message, 'Ok !', {panelClass: ['snackbar-error'], duration: 3500});
       }
     });
   }

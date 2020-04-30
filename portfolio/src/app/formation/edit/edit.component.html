@@ -1,0 +1,78 @@
+<mat-card class="almost-full-width">
+  <div class="card-title">
+    <h1>Modification de l'Experience #{{id}}</h1>
+    <h3>Pour modifier une expérience, renseignez ces champs :</h3>
+  </div>
+  <mat-card-content class="m-top">
+    <form [formGroup]="editFormationForm">
+      <div>
+        <mat-grid-list cols="3" rowHeight="175px">
+    
+          <!-- Name textbox -->
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Nom de la formation</mat-label>
+              <input matInput formControlName="name">
+              <mat-icon matSuffix>work</mat-icon>
+              <mat-error *ngIf="editFormationForm.controls['name'].errors?.required">
+                Un nom pour la formation est requis.
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+    
+        <!-- StartYear textbox -->
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Année de début de la formation</mat-label>
+              <input matInput formControlName="yearStart">
+              <mat-error *ngIf="editFormationForm.controls['yearStart'].errors?.required">
+                Une année de début doit être renseignée.</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+    
+        <!-- EndYear texbox -->
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Année de fin de la formation</mat-label>
+              <input matInput  formControlName="yearEnd">
+              <mat-error *ngIf="editFormationForm.controls['yearEnd'].errors?.required">
+                Une année de fin doit être renseignée.
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+             <!-- Location texbox -->
+             <mat-grid-tile>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Lieu de la formation</mat-label>
+                <input matInput formControlName="location" (ngModelChange)="search()" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor='let option of options' [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </mat-grid-tile>
+  
+    
+          <mat-grid-tile colspan="3">
+            <mat-form-field appearance="outline" hintLabel="Max 500 caractères" class="full-width">
+              <mat-label>Description de la formation</mat-label>
+              <textarea matInput formControlName="description" type="text" maxlength="500" #description rows="5"></textarea>
+              <mat-hint align="end">{{description.value?.length || 0}}/500</mat-hint>
+              <mat-error *ngIf="editFormationForm.controls['description'].errors?.maxLength">Vous ne pouvez plus ajouter de caractères.</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+    
+        </mat-grid-list>
+      </div>
+      <div class="flex-end">
+        <button mat-button (click)="reset()">Annuler</button>
+        <button mat-flat-button (click)="submit()" [disabled]="!editFormationForm.valid" type="submit"
+          color='primary'>Mettre à jour 🔄</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+

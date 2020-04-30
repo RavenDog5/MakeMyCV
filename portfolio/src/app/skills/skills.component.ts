@@ -45,7 +45,7 @@ export class SkillsComponent implements OnInit {
     dialogRef.afterClosed()
     .subscribe(result => {
       if (result === 'ok' ) {
-        this.snackbar.open('Création réussie !', '', { duration: 1000});
+        this.snackbar.open('Compétence créée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
         this.getAll();
       }
       });
@@ -57,15 +57,14 @@ export class SkillsComponent implements OnInit {
       width: '550px',
       data: {
         id: skill.id,
-        name: skill.name,
-        level: skill.level
+        name: skill.name
       }
     });
 
     dialogRef.afterClosed()
     .subscribe(result => {
       if (result === 'ok' ) {
-        this.snackbar.open('Modification réussie  !', '', { duration: 1000});
+        this.snackbar.open('Compétence modifiée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
         this.getAll();
       }
       });
@@ -83,7 +82,7 @@ export class SkillsComponent implements OnInit {
     dialogRef.afterClosed()
     .subscribe(result => {
       if (result === 'ok' ) {
-        this.snackbar.open('Compétence supprimée avec succès !', '', { duration: 1000,  });
+        this.snackbar.open('Compétence supprimée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
         this.getAll();
       }
     });

@@ -1,0 +1,76 @@
+<mat-card class="card">
+  <div class="card-title">
+    <h1>Créer une nouvelle Formation</h1>
+    <h3>Pour créer une formation, renseignez ces champs :</h3>
+  </div>
+  <mat-card-content class="m-top">
+    <form [formGroup]="newFormationForm">
+      <div>
+        <mat-grid-list cols="2" rowHeight="175px">
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nom de la formation</mat-label>
+              <input matInput formControlName="name">
+              <mat-icon matSuffix>work</mat-icon>
+              <mat-error *ngIf="newFormationForm.controls['name'].errors?.required">Un nom pour la expérience est
+                requis.
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Année de début de la formation</mat-label>
+              <input matInput formControlName="yearStart">
+              <mat-error *ngIf="newFormationForm.controls['yearStart'].errors?.required">
+                Une année de début doit être renseignée.
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Année de fin de la formation</mat-label>
+              <input matInput formControlName="yearEnd">
+              <mat-error *ngIf="newFormationForm.controls['yearEnd'].errors?.required">
+                Une année de fin doit être renseignée.
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Lieu de la formation</mat-label>
+              <input matInput formControlName="location" (ngModelChange)="search()" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor='let option of options' [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2">
+            <mat-form-field appearance="outline" hintLabel="Max 500 caractères" class="full-width">
+              <mat-label>Description de l'experience</mat-label>
+              <textarea matInput formControlName="description" type="text" maxlength="500" #description
+                rows="5"></textarea>
+              <mat-hint align="end">{{description.value?.length || 0}}/500</mat-hint>
+              <mat-error *ngIf="newFormationForm.controls['description'].errors?.maxLength">Vous ne pouvez plu
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+        </mat-grid-list>
+      </div>
+      <div mat-dialog-actions class="flex-end">
+        <button mat-button (click)="reset()" type="reset">Annuler</button>
+        <button mat-flat-button (click)="submit()" [disabled]="!newFormationForm.valid" type="submit"
+          color='primary'>Ok</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

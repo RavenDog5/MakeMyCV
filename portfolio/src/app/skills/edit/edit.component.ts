@@ -11,11 +11,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditSkillComponent {
 
-  hide = true;
   editSkillForm = new FormGroup({
     id: new FormControl(''),
-    name: new FormControl('',  Validators.required),
-    level: new FormControl('', [Validators.max(10), Validators.required])
+    name: new FormControl('',  Validators.required)
   });
 
   constructor(
@@ -25,9 +23,7 @@ export class EditSkillComponent {
   ) {
     this.editSkillForm.patchValue({
       id: data.id,
-      name: data.name,
-      level: data.level,
-      countUsedIn: data.countUsedIn
+      name: data.name
     });
   }
 
@@ -41,7 +37,6 @@ export class EditSkillComponent {
     skill.countUsedIn = this.editSkillForm.value.countUsedIn;
     skill.id = this.editSkillForm.value.id;
     skill.name = this.editSkillForm.value.name;
-    skill.level = this.editSkillForm.value.level;
     this.skillService.edit(skill, skill.id)
     .subscribe( data => { }, err => console.error(err));
     this.dialogRef.close('ok');

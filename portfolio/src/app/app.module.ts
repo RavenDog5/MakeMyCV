@@ -29,20 +29,26 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
 
-import { SkillsComponent } from './skills/skills.component';
-import { ExperiencesComponent } from './experiences/experiences.component';
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 // SKILL
+import { SkillsComponent } from './skills/skills.component';
 import { CreateSkillComponent } from './skills/create/create.component';
 import { EditSkillComponent } from './skills/edit/edit.component';
 import { DeleteSkillComponent } from './skills/delete/delete.component';
 
 // EXPERIENCE
+import { ExperiencesComponent } from './experiences/experiences.component';
 import { CreateExperienceComponent } from './experiences/create/create.component';
 import { EditExperienceComponent } from './experiences/edit/edit.component';
 import { DeleteExperienceComponent } from './experiences/delete/delete.component';
+
+// FORMATION
+import { FormationComponent } from './formation/formation.component';
+import { CreateFormationComponent } from './formation/create/create.component';
+import { EditFormationComponent } from './formation/edit/edit.component';
 
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -70,7 +76,10 @@ import { ProfilComponent } from './profil/profil.component';
     ProfilComponent,
     CreateExperienceComponent,
     EditExperienceComponent,
-    DeleteExperienceComponent
+    DeleteExperienceComponent,
+    FormationComponent,
+    CreateFormationComponent,
+    EditFormationComponent,
   ],
   imports: [
     BrowserModule,

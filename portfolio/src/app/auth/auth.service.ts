@@ -49,7 +49,7 @@ export class AuthService {
       token: authResult.user.token
     };
     // TEST
-    console.log('[auth.service.ts] userConnected : ', this.userConnected);
+    // console.log('[auth.service.ts] userConnected : ', this.userConnected);
   }
 
   register(newUser: User): Observable<any> {

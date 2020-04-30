@@ -26,8 +26,9 @@
         <h3 *ngIf="logged ">{{userLogged.username}}</h3>
         <button mat-icon-button *ngIf="logged" [matMenuTriggerFor]="menu" class="more_button"><img src="{{ userLogged.avatar }}" height="40" width="40"/></button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="account">Mon Profil</button>
-            <button mat-menu-item class="deconnect" (click)="logout()">Déconnexion <mat-icon>power_settings_new</mat-icon></button>
+            <button mat-menu-item routerLink="account"><mat-icon mat-Preffix color="accent" class="mat-icon">person</mat-icon>Mon Profil</button>
+            <button mat-menu-item routerLink="about"><mat-icon mat-Preffix color="accent" class="mat-icon">info</mat-icon>A propos</button>
+            <button mat-menu-item (click)="logout()"><mat-icon mat-Preffix color="warn" class="mat-icon">power_settings_new</mat-icon>Déconnexion</button>
         </mat-menu>
       </mat-toolbar>
       <div class="content">

@@ -1,12 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
+// Color !
+$error: #ba000d default;
+$sucess: #388e3c default;
+$sucess-darken: #087f23 default;
+$white: white;
+$info: #3949ab default;
+
+$gradient-1: #f44336;
+$gradient-2: #5e35b1;
+
+
+
 html, body { height: 100%; }
+
 body { margin: 0; }
 *{ font-family: 'Titillium Web', "Helvetica Neue", sans-serif; }
 .flex-end {
     width: 100%;
     display: inline-flex;
     justify-content: flex-end;
+}
+.text-center {
+  text-align: center;
 }
 table {
   width: 100%;
@@ -27,39 +43,39 @@ table {
     flex-direction: column;
     align-items: baseline;
     justify-content: center;
-    background: linear-gradient(to left, #f44336, #5e35b1);
-    color: white;
+    background: linear-gradient(to left, $gradient-1, $gradient-2);
+    color: $white;
     h1 {
       margin: 0;
     }
   }
-// Color !
-$sucess: #388e3c default;
+
+
 
 
   // SNACKBAR ERROR
   ::ng-deep snack-bar-container.snackbar-error {
-    background: #ba000d;
+    background: $error;
   }
   
   ::ng-deep .snackbar-error .mat-simple-snackbar {
-    color: white;
+    color: $white;
   }
   
   // SNACKBAR SUCCESS
   ::ng-deep snack-bar-container.snackbar-success {
-    background: #087f23;
+    background: $sucess-darken;
   }
   
   ::ng-deep .snackbar-success .mat-simple-snackbar {
-    color: white;
+    color: $white;
   }
 
    // SNACKBAR INFO
    ::ng-deep snack-bar-container.snackbar-info {
-    background: #3949ab;
+    background: $info;
   }
   
   ::ng-deep .snackbar-info .mat-simple-snackbar {
-    color: white;
+    color: $white;
   }

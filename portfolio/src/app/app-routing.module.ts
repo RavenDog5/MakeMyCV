@@ -10,6 +10,9 @@ import { AuthGuard } from './auth.guard';
 import { ProfilComponent } from './profil/profil.component';
 import { CreateExperienceComponent } from './experiences/create/create.component';
 import { EditExperienceComponent } from './experiences/edit/edit.component';
+import { FormationComponent } from './formation/formation.component';
+import { CreateFormationComponent } from './formation/create/create.component';
+import { EditFormationComponent } from './formation/edit/edit.component';
 
 
 export const routes: Routes = [
@@ -17,9 +20,12 @@ export const routes: Routes = [
   { path: 'experiences', component: ExperiencesComponent, canActivate: [AuthGuard]},
   { path: 'experiences/create', component: CreateExperienceComponent, canActivate: [AuthGuard]},
   { path: 'experiences/edit', component: EditExperienceComponent, canActivate: [AuthGuard]},
+  { path: 'formation', component: FormationComponent, canActivate: [AuthGuard] },
+  { path: 'formation/create', component: CreateFormationComponent, canActivate: [AuthGuard] },
+  { path: 'formation/edit', component: EditFormationComponent, canActivate: [AuthGuard] },
   { path: 'account', component: ProfilComponent, canActivate: [AuthGuard]},
-  { path: 'auth', component: AuthComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'auth', component: AuthComponent},
   { path: 'about', component: AboutComponent},
   { path: '', redirectTo: 'auth', pathMatch: 'full'},
   { path: '**' , component: PageNotFoundComponent}

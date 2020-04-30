@@ -10,6 +10,7 @@ export const environment = {
       { label: 'Tableau de bord', path: 'dashboard', icon: 'dashboard'},
       { label: 'Experiences', path: 'experiences', icon: 'work'},
       { label: 'Compétences', path: 'skills', icon: 'explore'},
+      { label: 'Formations', path: 'formation', icon: 'home'}
     ],
     notLogged: [
     {label: 'Connexion', path: 'auth', icon: 'person' }
@@ -21,6 +22,7 @@ export const environment = {
       skills : 'skill',
       account : 'user',
       experiences : 'experience',
+      formation: 'formation',
       login: 'user/login',
       register: 'user',
       adress: 'utils/address',

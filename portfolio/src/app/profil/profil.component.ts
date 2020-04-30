@@ -3,9 +3,9 @@ import { ProfilService } from './profil.service';
 import { AuthService } from '../auth/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FeatureCollection } from '../auth/auth.component';
 import { User } from '../auth/user.model';
 import { Router } from '@angular/router';
+import { FeatureCollection } from '../FeatureCollection.interface';
 
 @Component({
   selector: 'app-profil',
@@ -71,10 +71,6 @@ export class ProfilComponent implements OnInit {
     }, 250);
   }
 
-  reset(): void {
-    this.form.clearValidators();
-    this.form.reset();
-  }
 
   submit(): void {
     const updatedUser = {
@@ -92,8 +88,12 @@ export class ProfilComponent implements OnInit {
       const infoMessage = 'Important ! pour voir les changements, merci de vous reconnecter.';
       // this.snackbar.open(message, '', {duration: 1500, panelClass: ['snackbar-success']});
       this.snackbar.open(message + '\n' + infoMessage, 'Compris !', { panelClass: ['snackbar-info']});
-    }, err => { console.log('ERREUR : ', err); });
-    this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard']);
+
+    }, err => {
+      const errorMsg = 'Il y a une erreur pour la mise à jour de votre profil : ' + err;
+      this.snackbar.open(errorMsg, 'Compris !', { panelClass: ['snackbar-error']});
+    });
   }
 
 }

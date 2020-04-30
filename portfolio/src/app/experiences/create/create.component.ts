@@ -12,6 +12,7 @@ import { startWith, map } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Skill } from 'src/app/skills/skills.model';
 import { SkillService } from 'src/app/skills/skills.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -53,6 +54,7 @@ export class CreateExperienceComponent implements OnInit{
     private xpService: ExperienceService,
     private skillService: SkillService,
     private authService: AuthService,
+    private router: Router,
     private snackbar: MatSnackBar
   ) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe( startWith (null),
@@ -64,8 +66,7 @@ export class CreateExperienceComponent implements OnInit{
   }
 
   reset(): void {
-    this.newExperienceForm.clearValidators();
-    this.newExperienceForm.reset();
+    this.router.navigate(['experiences']);
   }
 
   submit(): void {

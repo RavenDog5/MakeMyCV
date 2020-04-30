@@ -16,6 +16,8 @@
           width: 44px;
       }
 }
+
+
 .nav-sidenav {
     display: flex;
     flex-direction: column;
@@ -35,7 +37,9 @@
         }
     }
 }
-
+.mat-icon{
+    margin-right: 8px!important;
+}
 .active{
     background:  linear-gradient(to left, #f44336, #5e35b1);
     color: white;
