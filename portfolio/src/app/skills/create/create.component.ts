@@ -31,8 +31,15 @@ export class CreateSkillComponent {
     newSkill.countUsedIn = 0;
 
     this.skillService.add(newSkill)
-    .subscribe( () => { }, err => console.error(err));
-    this.dialogRef.close('ok');
+    .subscribe( () => {
+      this.dialogRef.close('ok');
+    }, err => {
+      if (err.error.message === 'La compétence est déjà existante') {
+        this.dialogRef.close('alreadyExists');
+      } else {
+        this.dialogRef.close('error');
+      }
+    });
   }
 
 

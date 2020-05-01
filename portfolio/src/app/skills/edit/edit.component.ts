@@ -34,11 +34,14 @@ export class EditSkillComponent {
   submit(): void {
 
     const skill = new Skill();
-    skill.countUsedIn = this.editSkillForm.value.countUsedIn;
     skill.id = this.editSkillForm.value.id;
     skill.name = this.editSkillForm.value.name;
+    skill.countUsedIn = this.editSkillForm.value.countUsedIn;
     this.skillService.edit(skill, skill.id)
-    .subscribe( data => { }, err => console.error(err));
-    this.dialogRef.close('ok');
+    .subscribe( data => {
+      this.dialogRef.close('ok');
+     }, err => {
+      this.dialogRef.close('error');
+    });
   }
 }

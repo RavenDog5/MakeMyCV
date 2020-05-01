@@ -60,6 +60,7 @@ table {
   
   ::ng-deep .snackbar-error .mat-simple-snackbar {
     color: $white;
+    text-align: center;
   }
   
   // SNACKBAR SUCCESS
@@ -69,6 +70,7 @@ table {
   
   ::ng-deep .snackbar-success .mat-simple-snackbar {
     color: $white;
+    text-align: center;
   }
 
    // SNACKBAR INFO
@@ -78,4 +80,5 @@ table {
   
   ::ng-deep .snackbar-info .mat-simple-snackbar {
     color: $white;
+    text-align: center;
   }

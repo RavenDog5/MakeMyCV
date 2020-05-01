@@ -58,7 +58,7 @@ export class EditExperienceComponent implements OnInit {
     this.experienceService.edit(experience, experience.id)
     .subscribe( () => {
       const message = `Experience modifiée avec succès ! ✅`;
-      this.snackbar.open(message, '', {duration: 3500, panelClass: 'snackbar-success'});
+      this.snackbar.open(message, '', {duration: 3500, panelClass: ['snackbar-success']});
     }, err => console.error(err));
     this.router.navigate(['experiences']);
   }

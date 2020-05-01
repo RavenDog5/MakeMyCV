@@ -6,10 +6,10 @@
   <mat-card-content class="m-top">
     <form [formGroup]="editExperienceForm">
       <div>
-        <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-list cols="2" rowHeight="145px">
     
-          <mat-grid-tile>
-            <mat-form-field appearance="outline">
+          <mat-grid-tile colspan="2">
+            <mat-form-field appearance="outline" class="almost-full-width">
               <mat-label>Nom de l'expérience</mat-label>
               <input matInput formControlName="name">
               <mat-icon matSuffix>work</mat-icon>
@@ -18,15 +18,7 @@
             </mat-form-field>
           </mat-grid-tile>
     
-          <mat-grid-tile rowspan="3">
-            <mat-form-field appearance="outline" hintLabel="Max 500 caractères" class="full-width">
-              <mat-label>Description de l'experience</mat-label>
-              <textarea matInput formControlName="description" type="text" maxlength="500" #description rows="5"></textarea>
-              <mat-hint align="end">{{description.value?.length || 0}}/500</mat-hint>
-              <mat-error *ngIf="editExperienceForm.controls['description'].errors?.maxLength">Vous ne pouvez plu</mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-
+          
           <mat-grid-tile>
             <mat-form-field appearance="outline">
               <mat-label>Date de début de l'experience</mat-label>
@@ -35,20 +27,28 @@
               <mat-datepicker #dpstart ></mat-datepicker>
               <mat-error *ngIf="editExperienceForm.controls['startDate'].errors?.required">Une date de début doit être
                 renseigné.</mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-    
-          <mat-grid-tile>
-            <mat-form-field appearance="outline">
-              <mat-label>Date de fin de l'experience</mat-label>
-              <input matInput [matDatepicker]="dpend"  formControlName="endDate">
-              <mat-datepicker-toggle matSuffix [for]="dpend"></mat-datepicker-toggle>
-              <mat-datepicker #dpend></mat-datepicker>
-              <mat-error *ngIf="editExperienceForm.controls['endDate'].errors?.required">Une date de fin doit être renseigné.
-              </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-    
+              </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+              <mat-form-field appearance="outline">
+                <mat-label>Date de fin de l'experience</mat-label>
+                <input matInput [matDatepicker]="dpend"  formControlName="endDate">
+                <mat-datepicker-toggle matSuffix [for]="dpend"></mat-datepicker-toggle>
+                <mat-datepicker #dpend></mat-datepicker>
+                <mat-error *ngIf="editExperienceForm.controls['endDate'].errors?.required">Une date de fin doit être renseigné.
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile colspan="2">
+              <mat-form-field appearance="outline" hintLabel="Max 500 caractères" class="full-width">
+                <mat-label>Description de l'experience</mat-label>
+                <textarea matInput formControlName="description" type="text" maxlength="500" #description rows="5"></textarea>
+                <mat-hint align="end">{{description.value?.length || 0}}/500</mat-hint>
+                <mat-error *ngIf="editExperienceForm.controls['description'].errors?.maxLength">Vous ne pouvez plu</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
     
         </mat-grid-list>
       </div>

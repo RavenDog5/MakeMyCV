@@ -47,6 +47,8 @@ export class SkillsComponent implements OnInit {
       if (result === 'ok' ) {
         this.snackbar.open('Compétence créée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
         this.getAll();
+      } else if (result === 'alreadyExists') {
+        this.snackbar.open('❌ La compétence existe déjà ❌', '', { duration: 3500, panelClass: ['snackbar-error']});
       }
       });
   }
@@ -66,6 +68,8 @@ export class SkillsComponent implements OnInit {
       if (result === 'ok' ) {
         this.snackbar.open('Compétence modifiée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
         this.getAll();
+      } else if (result === 'error') {
+        this.snackbar.open('❌ Il y a eu une erreur lors de la création ❌', '', { duration: 3500, panelClass: ['snackbar-error']});
       }
       });
   }

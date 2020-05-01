@@ -40,8 +40,7 @@ export class SkillsService {
 
     async createOne(dto: SkillDto): Promise<SkillEntity> {
 
-        const skill = this.skillRepository.findOne({name: dto.name});
-        
+        const skill = await this.skillRepository.findOne({where: {name: dto.name}});
         if(!skill) {
             const newskill = new SkillEntity();
             newskill.name = dto.name;

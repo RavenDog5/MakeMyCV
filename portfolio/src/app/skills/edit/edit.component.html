@@ -3,13 +3,11 @@
   <div mat-dialog-content>
     <p>Vous pouvez modifier ces champs :</p>
 
-    <mat-grid-tile>
       <mat-form-field appearance="outline">
         <mat-label>Nom de la compétence</mat-label>
         <input matInput formControlName="name">
         <mat-error *ngIf="editSkillForm.controls['name'].errors?.required">Un nom pour la compétence est requis.</mat-error>
       </mat-form-field>
-    </mat-grid-tile>
 
   </div>
   <div mat-dialog-actions class="flex-end">
