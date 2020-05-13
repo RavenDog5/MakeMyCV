@@ -8,6 +8,7 @@ import { Formation } from './formation.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeleteFormationComponent } from './delete/delete.component';
 
 @Component({
   selector: 'app-formation',
@@ -62,8 +63,7 @@ export class FormationComponent implements OnInit {
 
   // DELETE FORMATION
   openDeleteDialog(id: number): void {
-
-    const dialogRef = this.dialog.open(Formation, {
+    const dialogRef = this.dialog.open(DeleteFormationComponent, {
       width: '350px',
       data: {
         idUser: id,
@@ -73,6 +73,7 @@ export class FormationComponent implements OnInit {
     dialogRef.afterClosed().subscribe( result => {
       if (result === 'ok') {
         this.snackbar.open('Formation supprimée avec succès ! ✅', '', {duration: 3500, panelClass: ['snackbar-success']});
+        this.getAll();
       }
     });
   }

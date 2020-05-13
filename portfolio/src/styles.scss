@@ -50,17 +50,9 @@ table {
     }
   }
 
-
-
-
   // SNACKBAR ERROR
   ::ng-deep snack-bar-container.snackbar-error {
     background: $error;
-  }
-  
-  ::ng-deep .snackbar-error .mat-simple-snackbar {
-    color: $white;
-    text-align: center;
   }
   
   // SNACKBAR SUCCESS
@@ -68,17 +60,13 @@ table {
     background: $sucess-darken;
   }
   
-  ::ng-deep .snackbar-success .mat-simple-snackbar {
-    color: $white;
-    text-align: center;
-  }
-
-   // SNACKBAR INFO
-   ::ng-deep snack-bar-container.snackbar-info {
+  // SNACKBAR INFO
+  ::ng-deep snack-bar-container.snackbar-info {
     background: $info;
   }
-  
-  ::ng-deep .snackbar-info .mat-simple-snackbar {
+
+  // SNACKBAR DEFAULT
+  ::ng-deep .mat-simple-snackbar {
     color: $white;
     text-align: center;
   }

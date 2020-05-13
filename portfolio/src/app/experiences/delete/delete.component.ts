@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExperienceService } from '../experience.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IDelete } from 'src/app/interfaces/delete.interface';
 
 @Component({
   selector: 'app-delete',
@@ -12,10 +13,11 @@ export class DeleteExperienceComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteExperienceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: IDelete,
     private experienceService: ExperienceService,
     private snackbar: MatSnackBar
   ) { }
+
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -23,7 +25,7 @@ export class DeleteExperienceComponent {
 
   onOkClick(idToDelete): void {
     this.experienceService.remove(idToDelete.idUser)
-    .subscribe( response => {
+    .subscribe( () => {
       const message = `Experience supprimée avec succès ! ✅`;
       this.snackbar.open(message, '', {duration: 3500, panelClass: ['snackbar-success']});
     }, err => {

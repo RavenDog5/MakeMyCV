@@ -72,8 +72,7 @@ export class ExperiencesComponent implements OnInit {
         }
       });
 
-      dialogRef.afterClosed()
-      .subscribe(result => {
+      dialogRef.afterClosed().subscribe(result => {
         if (result === 'ok' ) {
           this.snackbar.open('Expérience supprimée avec succès ! ✅', '', { duration: 3500, panelClass: ['snackbar-success']});
           this.getAll();

@@ -19,13 +19,14 @@ export class AuthComponent implements OnInit {
   options = [];
   newUser: User;
   genPass = 'Pas d\'idée de mot de passe ?';
+
   // FORMS CONTROL
   loginForm = new FormGroup({
     email: new FormControl('',  Validators.email),
     password: new FormControl('', Validators.required),
   });
 
-  registerForm: FormGroup = new FormGroup({
+  registerForm = new FormGroup({
     username: new FormControl(''),
     avatar: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
@@ -67,7 +68,7 @@ export class AuthComponent implements OnInit {
         password:  res[0].password
       });
       const msg = 'Notez bien le mot de passe généré : ' + res[0].password + '\n Le mot de passe est directement renseigné 😉';
-      this.snackbar.open(msg, 'C\'est noté !', {panelClass: ['snackbar-success']});
+      this.snackbar.open(msg, 'C\'est noté !', { panelClass: ['snackbar-success']});
       this.genPass = 'Un autre mot de passe ?';
     }, err => console.error(err));
   }
@@ -87,7 +88,7 @@ export class AuthComponent implements OnInit {
       console.log('ERREUR ', err);
       if (err.status === 401) {
         const message = ' ❌ Utilisateur inconnu 🙅‍♀️';
-        this.snackbar.open(message, '', {panelClass: ['snackbar-error'], duration: 3500});
+        this.snackbar.open(message, '', { duration: 3500, panelClass: ['snackbar-error']});
       }
     });
   }

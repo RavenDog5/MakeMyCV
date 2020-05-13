@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormationService } from '../formation.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IDelete } from 'src/app/interfaces/delete.interface';
 
 @Component({
   selector: 'app-delete',
@@ -12,7 +13,7 @@ export class DeleteFormationComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteFormationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: IDelete,
     private formationService: FormationService,
     private snackbar: MatSnackBar
   ) { }
@@ -23,7 +24,7 @@ export class DeleteFormationComponent {
 
   onOkClick(idToDelete): void {
     this.formationService.remove(idToDelete.idUser)
-    .subscribe( response => {
+    .subscribe( () => {
       const message = `Formation supprimée avec succès ! ✅`;
       this.snackbar.open(message, '', {duration: 3500, panelClass: ['snackbar-success']});
       this.dialogRef.close('ok');

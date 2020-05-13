@@ -49,6 +49,7 @@ import { DeleteExperienceComponent } from './experiences/delete/delete.component
 import { FormationComponent } from './formation/formation.component';
 import { CreateFormationComponent } from './formation/create/create.component';
 import { EditFormationComponent } from './formation/edit/edit.component';
+import { DeleteFormationComponent } from './formation/delete/delete.component';
 
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -80,6 +81,7 @@ import { ProfilComponent } from './profil/profil.component';
     FormationComponent,
     CreateFormationComponent,
     EditFormationComponent,
+    DeleteFormationComponent
   ],
   imports: [
     BrowserModule,

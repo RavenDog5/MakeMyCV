@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SkillService } from '../skills.service';
+import { IDelete } from 'src/app/interfaces/delete.interface';
 
 @Component({
   selector: 'app-delete',
@@ -11,7 +12,7 @@ export class DeleteSkillComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteSkillComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: IDelete,
     private skillService: SkillService
   ) { }
 
