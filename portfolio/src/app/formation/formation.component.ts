@@ -28,6 +28,7 @@ export class FormationComponent implements OnInit {
   displayedColumns: string[];
   FormationData: Formation[];
   dataSource;
+  nodata : Boolean = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -46,6 +47,7 @@ export class FormationComponent implements OnInit {
           this.dataSource = new MatTableDataSource<Formation>(res.formations);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          if(this.dataSource.data.length > 0) this.nodata = !this.nodata;
         }
       }, err => console.error(err));
   }

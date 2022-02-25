@@ -83,6 +83,7 @@ export class CreateExperienceComponent implements OnInit{
       .subscribe( (result) => {
         const message = `Experience ajoutée avec succès ! ✅`;
         this.snackbar.open(message, '', {duration: 3500, panelClass: ['snackbar-success']});
+        this.router.navigate(['experiences']);
       }, err => console.error(err));
     });
   }

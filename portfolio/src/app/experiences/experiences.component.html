@@ -7,54 +7,63 @@
     </button>
   </div>
   <mat-card-content>
-    <table mat-table [dataSource]="dataSource" matSort>
 
-      <!-- Id Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
+    <ng-container *ngIf="!nodata; else content">
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+      <h3> Pas de données ...</h3>
 
-      <!-- startDate Column -->
-      <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de début </th>
-        <td mat-cell *matCellDef="let element"> {{element.startDate | date:"dd/MM/yyyy"}}</td>
-      </ng-container>
+    </ng-container>
+    <ng-template #content>
+      <table mat-table [dataSource]="dataSource" matSort >
 
-      <!-- startDate Column -->
-      <ng-container matColumnDef="endDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de fin </th>
-        <td mat-cell *matCellDef="let element"> {{element.endDate | date:"dd/MM/yyyy"}}</td>
-      </ng-container>
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
 
-      <!-- startDate Column -->
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-        <td mat-cell *matCellDef="let element" > {{ (element.description.length>10)? (element.description | slice:0:25) + '...': (element.description) }}</td>
-      </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-      <!-- endDate Column -->
-      <ng-container matColumnDef='actions'>
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button aria-label="Edit" color="accent" (click)="editExperience(element)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button aria-label="Delete" color="warn" (click)="openDeleteDialog(element.id)">
-            <mat-icon>not_interested</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+        <!-- startDate Column -->
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de début </th>
+          <td mat-cell *matCellDef="let element"> {{element.startDate | date:"dd/MM/yyyy"}}</td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <!-- startDate Column -->
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de fin </th>
+          <td mat-cell *matCellDef="let element"> {{element.endDate | date:"dd/MM/yyyy"}}</td>
+        </ng-container>
+
+        <!-- startDate Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let element" > {{ (element.description.length>10)? (element.description | slice:0:25) + '...': (element.description) }}</td>
+        </ng-container>
+
+        <!-- endDate Column -->
+        <ng-container matColumnDef='actions'>
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button aria-label="Edit" color="accent" (click)="editExperience(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Delete" color="warn" (click)="openDeleteDialog(element.id)">
+              <mat-icon>not_interested</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </ng-template>
+
   </mat-card-content>
 </mat-card>

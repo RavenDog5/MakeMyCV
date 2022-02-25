@@ -28,17 +28,18 @@ export class ExperiencesComponent implements OnInit {
   displayedColumns: string[];
   ExperienceData: Experience[];
   dataSource;
+  nodata: Boolean = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit(): void {
     this.getAll();
+
     this.displayedColumns = ['id', 'name', 'startDate', 'endDate', 'description', 'actions'];
   }
 
   private getAll(): void {
-
 
     this.experienceService.getAll(this.authService.userConnected.id)
       .subscribe ( (data: any) => {
@@ -47,8 +48,10 @@ export class ExperiencesComponent implements OnInit {
           this.dataSource = new MatTableDataSource<Experience>(data.experiences);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          if(this.dataSource.data.length > 0) this.nodata = !this.nodata;
         }
       }, err => console.error(err));
+
   }
 
 
